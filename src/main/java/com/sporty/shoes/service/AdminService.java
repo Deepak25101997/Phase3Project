@@ -10,10 +10,12 @@ public interface AdminService {
 	public Admin updateAdmin(Admin admin);
 	public Admin getAdminById(int id);
 	public void deleteAdminById(int id);
+	public Admin getAdminByUsername(String name);
 	
 	public void changeAdminPassword(int id,String oldPassword, String newPassword);
 //	public String changeAdminPassword(int id,String oldPassword, String newPassword);
 	public List<Admin> getAllAdmins();
 //	public void getAllAdminsByName();
+
 
 }

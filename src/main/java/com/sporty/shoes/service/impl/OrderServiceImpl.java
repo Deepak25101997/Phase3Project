@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sporty.shoes.exceptionHandler.MyException;
 import com.sporty.shoes.model.Order;
 import com.sporty.shoes.model.Product;
 import com.sporty.shoes.model.User;
@@ -26,7 +27,7 @@ public class OrderServiceImpl implements OrderService {
 	private ProductService pService;
 
 	@Override
-	public Order createOrder(int uid, int pid, Order order) {
+	public Order createOrder(int uid, int pid, Order order) throws MyException {
 
 		// getting the user and product by their ids
 		User user = uService.getUserById(uid);

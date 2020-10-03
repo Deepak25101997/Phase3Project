@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sporty.shoes.exceptionHandler.MyException;
 import com.sporty.shoes.model.Order;
 import com.sporty.shoes.service.OrderService;
 
@@ -18,7 +19,7 @@ public class OrderCRUDController {
 	private OrderService service;
 	
 	@PostMapping("/order/{uid}/product/{pid}")
-	public Order createOrder(@PathVariable int uid, @PathVariable int pid,@RequestBody Order order) {
+	public Order createOrder(@PathVariable int uid, @PathVariable int pid,@RequestBody Order order) throws MyException {
 		return service.createOrder(uid,pid,order);
 	}
 	

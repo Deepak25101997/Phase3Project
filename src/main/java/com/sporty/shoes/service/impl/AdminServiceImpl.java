@@ -34,6 +34,11 @@ public class AdminServiceImpl implements AdminService{
 	public void deleteAdminById(int id) {
 		repo.deleteById(id);
 	}
+	
+	@Override
+	public Admin getAdminByUsername(String name) {
+		return repo.findByUsername(name);
+	}
 
 	@Override
 	public void changeAdminPassword(int id, String sentOldPassword, String newPassword) {

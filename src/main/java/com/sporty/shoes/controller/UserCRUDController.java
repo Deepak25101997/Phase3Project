@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sporty.shoes.exceptionHandler.MyException;
 import com.sporty.shoes.model.User;
 import com.sporty.shoes.service.UserService;
 
@@ -21,8 +23,8 @@ public class UserCRUDController {
 	private UserService service;
 	
 	@PostMapping("/user")
-	public List<User> createUser(@RequestBody List<User> user){
-		return service.createUser(user);
+	public List<User> createUser(@RequestBody List<User> user, @RequestHeader("token") String token) throws MyException{
+		return service.createUser(user,token);
 	}
 	
 	@PutMapping("/user")
@@ -31,7 +33,7 @@ public class UserCRUDController {
 	}
 	
 	@GetMapping("/user/{id}")
-	public User getUserById(@PathVariable int id){
+	public User getUserById(@PathVariable int id) throws MyException{
 		return service.getUserById(id);
 	}
 	

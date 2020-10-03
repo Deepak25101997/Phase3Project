@@ -20,4 +20,6 @@ public interface AdminRepository  extends JpaRepository<Admin, Integer>{
 	@Modifying
 	@Transactional
 	public void updatePassword(String newPass,int id);
+	
+	public Admin findByUsername(String name);
 }

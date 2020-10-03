@@ -2,11 +2,12 @@ package com.sporty.shoes.service;
 
 import java.util.List;
 
+import com.sporty.shoes.exceptionHandler.MyException;
 import com.sporty.shoes.model.Order;
 
 public interface OrderService {
 	
-	public Order createOrder(int uid,int pid,Order order);
+	public Order createOrder(int uid,int pid,Order order) throws MyException;
 	public Order getOrderById(int id);
 	public void deleteOrderById(int id);
 	
