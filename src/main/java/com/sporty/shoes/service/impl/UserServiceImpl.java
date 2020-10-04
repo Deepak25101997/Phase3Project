@@ -2,12 +2,10 @@ package com.sporty.shoes.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.annotation.ObjectIdGenerators.StringIdGenerator;
 import com.sporty.shoes.exceptionHandler.MyAuthException;
 import com.sporty.shoes.exceptionHandler.MyException;
 import com.sporty.shoes.model.User;

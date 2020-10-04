@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.sporty.shoes.exceptionHandler.MyAuthException;
 import com.sporty.shoes.exceptionHandler.MyException;
 import com.sporty.shoes.model.Product;
-import com.sporty.shoes.model.User;
 import com.sporty.shoes.repository.ProductRepository;
 import com.sporty.shoes.service.AuthenticationService;
 import com.sporty.shoes.service.ProductService;
