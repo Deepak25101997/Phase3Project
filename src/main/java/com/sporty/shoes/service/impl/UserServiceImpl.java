@@ -22,6 +22,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private AuthenticationService AuthService;
+	
+	@Autowired
+	private UserService userService;
 
 	@Override
 	public List<User> createUser(List<User> user, String token) throws MyException, MyAuthException {
@@ -60,12 +63,18 @@ public class UserServiceImpl implements UserService {
 			if (isValidToken) {
 				if (user.getName()==null || user.getEmail()==null || user.getAge()<=0 || user.getContactNo() <= 0)
 					throw new MyException("User Data missing. Please pass appropriate data !!");
+				
+				@SuppressWarnings("unused")
+				User tempUser2 = userService.getUserById(user.getId(), token);
+				
 				tempUser = repo.save(user);
 			}
 		} catch (MyAuthException e) {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No user found with id " + user.getId() + "Updation Failed !!");
 		}
 
 		return tempUser;

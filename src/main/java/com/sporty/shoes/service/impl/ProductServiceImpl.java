@@ -22,6 +22,9 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private AuthenticationService AuthService;
+	
+	@Autowired
+	private ProductService productService;
 
 	@Override
 	public List<Product> createProduct(List<Product> product, String token) throws MyAuthException, MyException {
@@ -61,12 +64,18 @@ public class ProductServiceImpl implements ProductService {
 			if (isValidToken) {
 				if (product.getName() == null || product.getCategory() == null || product.getPrice() <= 0.0d)
 					throw new MyException("Product Data missing. Please pass appropriate data !!");
+				
+				@SuppressWarnings("unused")
+				Product tempProduct2 = productService.getProductById(product.getId(), token);
+				
 				tempProduct = repo.save(product);
 			}
 		} catch (MyAuthException e) {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No product found with id" + product.getId() + "Updation Failed");
 		}
 
 		return tempProduct;
