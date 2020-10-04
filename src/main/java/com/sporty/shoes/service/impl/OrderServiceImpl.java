@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.sporty.shoes.exceptionHandler.MyAuthException;
 import com.sporty.shoes.exceptionHandler.MyException;
 import com.sporty.shoes.model.Order;
+import com.sporty.shoes.model.OrderRequestModel;
 import com.sporty.shoes.model.Product;
 import com.sporty.shoes.model.User;
 import com.sporty.shoes.repository.OrderRepository;
@@ -34,7 +35,8 @@ public class OrderServiceImpl implements OrderService {
 	private AuthenticationService AuthService;
 
 	@Override
-	public Order createOrder(int uid, int pid, Order order, String token) throws MyException, MyAuthException {
+	public Order createOrder(int uid, int pid, OrderRequestModel orderReq, String token)
+			throws MyException, MyAuthException {
 
 		Order tempOrder = new Order();
 
@@ -51,8 +53,8 @@ public class OrderServiceImpl implements OrderService {
 
 			if (isValidToken) {
 
-				if (order.getDate() == null || order.getTotalAmount() <= 0d)
-					throw new MyException("Order cannot be null. Pass some data !");
+				if (orderReq.getDate() == null || orderReq.getTotalAmount() <= 0d || orderReq.getQuantity() <= 0)
+					throw new MyException("Invalid Data passed. Kindly Check !");
 
 				// getting the user and product by their ids
 				User user = uService.getUserById(uid, token);
@@ -64,7 +66,9 @@ public class OrderServiceImpl implements OrderService {
 				// saving them in the order entity
 				tempOrder.setUser(user);
 				tempOrder.setProduct(product);
-
+				tempOrder.setDate(orderReq.getDate());
+				tempOrder.setQuantity(orderReq.getQuantity());
+				tempOrder.setTotalAmount(orderReq.getTotalAmount());
 			}
 
 		} catch (MyAuthException e) {
@@ -72,7 +76,6 @@ public class OrderServiceImpl implements OrderService {
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
 		}
-
 		return tempOrder;
 	}
 
@@ -116,14 +119,14 @@ public class OrderServiceImpl implements OrderService {
 
 				@SuppressWarnings("unused")
 				Order order = repo.findById(id).get();
-				
+
 				repo.deleteById(id);
 			}
 		} catch (MyAuthException e) {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException("No order exists with id " + id);
 		}
 
@@ -145,7 +148,7 @@ public class OrderServiceImpl implements OrderService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException("No orders found !!!");
 		}
 
@@ -172,7 +175,7 @@ public class OrderServiceImpl implements OrderService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException("No order found for date " + date);
 		}
 
@@ -198,7 +201,7 @@ public class OrderServiceImpl implements OrderService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException("No order found for category " + category);
 		}
 
@@ -228,7 +231,7 @@ public class OrderServiceImpl implements OrderService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException("No order found for given date and category");
 		}
 

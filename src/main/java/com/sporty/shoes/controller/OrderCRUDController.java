@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sporty.shoes.exceptionHandler.MyAuthException;
 import com.sporty.shoes.exceptionHandler.MyException;
 import com.sporty.shoes.model.Order;
+import com.sporty.shoes.model.OrderRequestModel;
 import com.sporty.shoes.service.OrderService;
 
 @RestController
@@ -21,9 +22,9 @@ public class OrderCRUDController {
 	private OrderService service;
 
 	@PostMapping("/order/{uid}/product/{pid}")
-	public Order createOrder(@PathVariable int uid, @PathVariable int pid, @RequestBody Order order,
+	public Order createOrder(@PathVariable int uid, @PathVariable int pid, @RequestBody OrderRequestModel orderReq,
 			@RequestHeader("token") String token) throws MyException, MyAuthException {
-		return service.createOrder(uid, pid, order, token);
+		return service.createOrder(uid, pid, orderReq, token);
 	}
 
 	@GetMapping("/order/{id}")
