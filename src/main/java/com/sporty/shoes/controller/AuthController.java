@@ -21,4 +21,9 @@ public class AuthController {
 		return authService.createToken(username,password);
 	}
 
+	@PostMapping("/logout")
+	public String deAuthenticate(@RequestHeader("token") String token) throws MyAuthException {
+		return authService.logout(token);
+	}
+	
 }

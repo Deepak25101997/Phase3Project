@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.sporty.shoes.exceptionHandler.MyAuthException;
 import com.sporty.shoes.exceptionHandler.MyException;
 import com.sporty.shoes.model.Admin;
+import com.sporty.shoes.model.ChangePasswordRequest;
 import com.sporty.shoes.repository.AdminRepository;
 import com.sporty.shoes.service.AdminService;
 import com.sporty.shoes.service.AuthenticationService;
@@ -80,13 +81,13 @@ public class AdminServiceImpl implements AdminService {
 				}
 
 				admin = repo.findById(id).get();
-				
+
 			}
 		} catch (MyAuthException e) {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException("No admin found with id" + id);
 		}
 
@@ -112,7 +113,7 @@ public class AdminServiceImpl implements AdminService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException("No admin exists with id " + id);
 		}
 
@@ -132,7 +133,7 @@ public class AdminServiceImpl implements AdminService {
 
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException("No admin found with username " + name);
 		}
 
@@ -140,7 +141,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void changeAdminPassword(int id, String sentOldPassword, String newPassword, String token)
+	public String changeAdminPassword(int id, ChangePasswordRequest changePassReq, String token)
 			throws MyException, MyAuthException {
 
 		try {
@@ -151,15 +152,18 @@ public class AdminServiceImpl implements AdminService {
 				if (id <= 0)
 					throw new MyException("Id cannot be 0 or negative !!");
 
-				if (sentOldPassword == null)
-					throw new MyException("Old password missing !!");
-				if (newPassword == null)
-					throw new MyException("New password missing !!");
+				if (changePassReq.getNewPassword() == null || changePassReq.getOldPassword() == null)
+					throw new MyException("Please send oldPassword and newPassword in the body!!");
 
 				String savedOldPass = repo.findPasswordById(id);
 
-				if (savedOldPass.equals(sentOldPassword)) {
-					repo.updatePassword(newPassword, id);
+				if (savedOldPass.equals(changePassReq.getOldPassword())) {
+
+					repo.updatePassword(changePassReq.getNewPassword(), id);
+
+					// deleting the present token and requiring admin to login again with new
+					// password for better security
+					AuthService.deleteByTokenValue(token);
 				} else {
 					throw new MyException("Oldpassword entered is not matching with the saved one !!");
 				}
@@ -169,10 +173,11 @@ public class AdminServiceImpl implements AdminService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException("No admin found with given id !!");
 		}
 
+		return "Password Changed Successfully. Please LOGIN again using new password !!";
 	}
 
 //	@Override
@@ -198,10 +203,9 @@ public class AdminServiceImpl implements AdminService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException("No admins found !!!");
 		}
-
 
 		return admins;
 	}

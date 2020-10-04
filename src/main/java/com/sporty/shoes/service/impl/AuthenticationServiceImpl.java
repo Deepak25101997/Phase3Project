@@ -19,7 +19,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
 	@Autowired
 	private MyTokenRepository repo;
-	
+
 	@Autowired
 	private AdminService adminService;
 
@@ -27,9 +27,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	public String createToken(String uname, String pass) throws MyAuthException, MyException {
 
 		Admin admin = null;
-		
+
 		String myGeneratedToken = UUID.randomUUID().toString();
-		
+
 		try {
 			if (uname == null || pass == null)
 				throw new MyAuthException("Username or password cannot be NULL !");
@@ -37,7 +37,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
 			String savedPassword = admin.getPassword();
 			if (savedPassword.equals(pass)) {
-				
+
 				MyToken tempToken = new MyToken();
 				tempToken.setTokenValue(myGeneratedToken);
 				repo.save(tempToken);
@@ -46,32 +46,73 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 			}
 		} catch (MyAuthException e) {
 			throw new MyAuthException("Invalid Credentials !");
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException("Admin with the given username not found !");
-		}catch (MyException e) {
+		} catch (MyException e) {
 			throw new MyException(e.getMessage());
 		}
-		
+
 		return myGeneratedToken;
 	}
 
 	@Override
 	public boolean validateToken(String token) throws MyAuthException {
-		
-		
+
 		try {
-			if(token==null) throw new MyAuthException("Invalid Token, Access Denied !!");
-			
+			if (token == null)
+				throw new MyAuthException("Invalid Token, Access Denied !!");
+
 			MyToken myToken = repo.findByTokenValue(token);
-			
-			if(myToken==null) throw new MyAuthException("Invalid Token, Access Denied !!");
-			
+
+			if (myToken == null)
+				throw new MyAuthException("Invalid Token, Access Denied !!");
+
 			return true;
-			
+
+		} catch (MyAuthException e) {
+			throw new MyAuthException(e.getMessage());
+		}
+
+	}
+
+	@Override
+	public void deleteByTokenValue(String tokenValue) throws MyAuthException {
+
+		try {
+			if (tokenValue == null)
+				throw new MyAuthException("Invalid Token !!");
+			repo.deleteByTokenValue(tokenValue);
+		} catch (MyAuthException e) {
+			throw new MyAuthException(e.getMessage());
+		}
+
+	}
+
+	@Override
+	public String logout(String token) throws MyAuthException {
+		try {
+			if(this.validateToken(token)) {
+				repo.deleteByTokenValue(token);
+			}
 		} catch (MyAuthException e) {
 			throw new MyAuthException(e.getMessage());
 		}
 		
+		return "Logged out successfully !!";
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

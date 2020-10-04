@@ -5,6 +5,7 @@ import java.util.List;
 import com.sporty.shoes.exceptionHandler.MyAuthException;
 import com.sporty.shoes.exceptionHandler.MyException;
 import com.sporty.shoes.model.Admin;
+import com.sporty.shoes.model.ChangePasswordRequest;
 
 public interface AdminService {
 
@@ -18,7 +19,7 @@ public interface AdminService {
 
 	public Admin getAdminByUsername(String name) throws MyException;
 
-	public void changeAdminPassword(int id, String oldPassword, String newPassword, String token)
+	public String changeAdminPassword(int id, ChangePasswordRequest changePassReq, String token)
 			throws MyException, MyAuthException;
 
 	public List<Admin> getAllAdmins(String token) throws MyException, MyAuthException;

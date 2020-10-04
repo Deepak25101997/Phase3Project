@@ -1,7 +1,6 @@
 package com.sporty.shoes.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sporty.shoes.exceptionHandler.MyAuthException;
 import com.sporty.shoes.exceptionHandler.MyException;
 import com.sporty.shoes.model.Admin;
+import com.sporty.shoes.model.ChangePasswordRequest;
 import com.sporty.shoes.service.AdminService;
 
 @RestController
@@ -46,10 +46,16 @@ public class AdminCRUDController {
 		service.deleteAdminById(id, token);
 	}
 
-	@PutMapping("/admin/changePassword/{id}")
-	public void changeAdminPassword(@RequestBody Map<String, String> json, @PathVariable int id,
-			@RequestHeader("token") String token) throws MyException, MyAuthException {
-		service.changeAdminPassword(id, json.get("sentOldPassword"), json.get("newPassword"), token);
-	}
+//	@PutMapping("/admin/changePassword/{id}")
+//	public void changeAdminPassword(@RequestBody Map<String, String> json, @PathVariable int id,
+//			@RequestHeader("token") String token) throws MyException, MyAuthException {
+//		service.changeAdminPassword(id, json.get("sentOldPassword"), json.get("newPassword"), token);
+//	}
 
+	@PutMapping("/admin/changePassword/{id}")
+	public String changeAdminPassword(@RequestBody ChangePasswordRequest changePassReq, @PathVariable int id,
+			@RequestHeader("token") String token) throws MyException, MyAuthException {
+		return service.changeAdminPassword(id, changePassReq, token);
+	}
+	
 }

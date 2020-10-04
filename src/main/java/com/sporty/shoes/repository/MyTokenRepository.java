@@ -9,5 +9,5 @@ import com.sporty.shoes.model.MyToken;
 public interface MyTokenRepository extends JpaRepository<MyToken, Integer>{
 
 	public MyToken findByTokenValue(String tokenValue);
-	
+	public void deleteByTokenValue(String tokenValue);
 }
