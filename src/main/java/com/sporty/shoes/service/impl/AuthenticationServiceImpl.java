@@ -35,6 +35,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 				throw new MyAuthException("Username or password cannot be NULL !");
 			admin = adminService.getAdminByUsername(uname);
 
+			if (admin == null)
+				throw new MyException("Admin with the given username not found !");
+
 			String savedPassword = admin.getPassword();
 			if (savedPassword.equals(pass)) {
 
@@ -47,7 +50,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		} catch (MyAuthException e) {
 			throw new MyAuthException("Invalid Credentials !");
 		} catch (NoSuchElementException e) {
-			throw new NoSuchElementException("Admin with the given username not found !");
+			throw new NoSuchElementException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
 		}
@@ -91,28 +94,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	@Override
 	public String logout(String token) throws MyAuthException {
 		try {
-			if(this.validateToken(token)) {
+			if (this.validateToken(token)) {
 				repo.deleteByTokenValue(token);
 			}
 		} catch (MyAuthException e) {
 			throw new MyAuthException(e.getMessage());
 		}
-		
+
 		return "Logged out successfully !!";
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

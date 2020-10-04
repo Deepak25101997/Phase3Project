@@ -12,6 +12,7 @@ import com.sporty.shoes.exceptionHandler.MyException;
 import com.sporty.shoes.model.Admin;
 import com.sporty.shoes.model.ChangePasswordRequest;
 import com.sporty.shoes.repository.AdminRepository;
+import com.sporty.shoes.repository.MyTokenRepository;
 import com.sporty.shoes.service.AdminService;
 import com.sporty.shoes.service.AuthenticationService;
 
@@ -23,6 +24,9 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	private AuthenticationService AuthService;
+	
+	@Autowired
+	private MyTokenRepository myTokenRepo;
 
 	@Override
 	public List<Admin> createAdmin(List<Admin> admin) throws MyException {
@@ -95,7 +99,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void deleteAdminById(int id, String token) throws MyException, MyAuthException {
+	public String deleteAdminById(int id, String token) throws MyException, MyAuthException {
 
 		try {
 			boolean isValidToken = AuthService.validateToken(token);
@@ -108,6 +112,7 @@ public class AdminServiceImpl implements AdminService {
 				@SuppressWarnings("unused")
 				Admin admin = repo.findById(id).get();
 				repo.deleteById(id);
+				myTokenRepo.deleteByTokenValue(token);
 			}
 		} catch (MyAuthException e) {
 			throw new MyAuthException(e.getMessage());
@@ -117,6 +122,7 @@ public class AdminServiceImpl implements AdminService {
 			throw new NoSuchElementException("No admin exists with id " + id);
 		}
 
+		return "Admin Deleted Successfully !! Kindly Login Again for security purpose !";
 	}
 
 	@Override

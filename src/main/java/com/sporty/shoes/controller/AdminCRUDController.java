@@ -41,9 +41,9 @@ public class AdminCRUDController {
 	}
 
 	@DeleteMapping("/admin/{id}")
-	public void deleteAdminById(@PathVariable int id, @RequestHeader("token") String token)
+	public String deleteAdminById(@PathVariable int id, @RequestHeader("token") String token)
 			throws MyAuthException, MyException {
-		service.deleteAdminById(id, token);
+		return service.deleteAdminById(id, token);
 	}
 
 //	@PutMapping("/admin/changePassword/{id}")
@@ -57,5 +57,5 @@ public class AdminCRUDController {
 			@RequestHeader("token") String token) throws MyException, MyAuthException {
 		return service.changeAdminPassword(id, changePassReq, token);
 	}
-	
+
 }

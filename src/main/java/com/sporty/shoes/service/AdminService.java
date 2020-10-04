@@ -15,7 +15,7 @@ public interface AdminService {
 
 	public Admin getAdminById(int id, String token) throws MyException, MyAuthException;
 
-	public void deleteAdminById(int id, String token) throws MyException, MyAuthException;
+	public String deleteAdminById(int id, String token) throws MyException, MyAuthException;
 
 	public Admin getAdminByUsername(String name) throws MyException;
 
