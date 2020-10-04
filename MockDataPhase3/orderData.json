@@ -1,0 +1,422 @@
+[
+    {
+        "userId": 57,
+        "productId": 68,
+        "quantity": 2,
+        "totalAmount": 3341.3,
+        "date": "2020-09-04"
+    },
+    {
+        "userId": 38,
+        "productId": 38,
+        "quantity": 5,
+        "totalAmount": 4888.55,
+        "date": "2020-09-02"
+    },
+    {
+        "userId": 90,
+        "productId": 58,
+        "quantity": 2,
+        "totalAmount": 1381.0,
+        "date": "2020-09-13"
+    },
+    {
+        "userId": 98,
+        "productId": 33,
+        "quantity": 5,
+        "totalAmount": 252.8,
+        "date": "2020-09-10"
+    },
+    {
+        "userId": 59,
+        "productId": 41,
+        "quantity": 3,
+        "totalAmount": 3004.68,
+        "date": "2020-09-10"
+    },
+    {
+        "userId": 47,
+        "productId": 32,
+        "quantity": 5,
+        "totalAmount": 4404.2,
+        "date": "2020-09-04"
+    },
+    {
+        "userId": 80,
+        "productId": 74,
+        "quantity": 4,
+        "totalAmount": 7482.24,
+        "date": "2020-09-04"
+    },
+    {
+        "userId": 79,
+        "productId": 17,
+        "quantity": 3,
+        "totalAmount": 1516.5,
+        "date": "2020-09-06"
+    },
+    {
+        "userId": 83,
+        "productId": 20,
+        "quantity": 1,
+        "totalAmount": 579.56,
+        "date": "2020-09-06"
+    },
+    {
+        "userId": 87,
+        "productId": 60,
+        "quantity": 4,
+        "totalAmount": 3600.0,
+        "date": "2020-09-11"
+    },
+    {
+        "userId": 75,
+        "productId": 37,
+        "quantity": 4,
+        "totalAmount": 3922.6,
+        "date": "2020-09-14"
+    },
+    {
+        "userId": 4,
+        "productId": 6,
+        "quantity": 2,
+        "totalAmount": 541.98,
+        "date": "2020-09-02"
+    },
+    {
+        "userId": 43,
+        "productId": 17,
+        "quantity": 2,
+        "totalAmount": 1011.0,
+        "date": "2020-09-02"
+    },
+    {
+        "userId": 40,
+        "productId": 6,
+        "quantity": 2,
+        "totalAmount": 541.98,
+        "date": "2020-09-10"
+    },
+    {
+        "userId": 72,
+        "productId": 50,
+        "quantity": 4,
+        "totalAmount": 5441.6,
+        "date": "2020-09-06"
+    },
+    {
+        "userId": 32,
+        "productId": 11,
+        "quantity": 1,
+        "totalAmount": 390.2,
+        "date": "2020-09-12"
+    },
+    {
+        "userId": 37,
+        "productId": 53,
+        "quantity": 4,
+        "totalAmount": 5761.6,
+        "date": "2020-09-01"
+    },
+    {
+        "userId": 35,
+        "productId": 77,
+        "quantity": 5,
+        "totalAmount": 9702.8,
+        "date": "2020-09-12"
+    },
+    {
+        "userId": 4,
+        "productId": 84,
+        "quantity": 2,
+        "totalAmount": 5483.2,
+        "date": "2020-09-03"
+    },
+    {
+        "userId": 29,
+        "productId": 60,
+        "quantity": 3,
+        "totalAmount": 2700.0,
+        "date": "2020-09-02"
+    },
+    {
+        "userId": 81,
+        "productId": 26,
+        "quantity": 1,
+        "totalAmount": 745.56,
+        "date": "2020-09-11"
+    },
+    {
+        "userId": 58,
+        "productId": 19,
+        "quantity": 1,
+        "totalAmount": 597.69,
+        "date": "2020-09-02"
+    },
+    {
+        "userId": 95,
+        "productId": 33,
+        "quantity": 2,
+        "totalAmount": 101.12,
+        "date": "2020-09-01"
+    },
+    {
+        "userId": 89,
+        "productId": 13,
+        "quantity": 1,
+        "totalAmount": 400.55,
+        "date": "2020-09-09"
+    },
+    {
+        "userId": 93,
+        "productId": 78,
+        "quantity": 4,
+        "totalAmount": 7841.8,
+        "date": "2020-09-01"
+    },
+    {
+        "userId": 19,
+        "productId": 42,
+        "quantity": 5,
+        "totalAmount": 5782.35,
+        "date": "2020-09-09"
+    },
+    {
+        "userId": 6,
+        "productId": 7,
+        "quantity": 1,
+        "totalAmount": 240.45,
+        "date": "2020-09-12"
+    },
+    {
+        "userId": 38,
+        "productId": 60,
+        "quantity": 5,
+        "totalAmount": 4500.0,
+        "date": "2020-09-08"
+    },
+    {
+        "userId": 76,
+        "productId": 48,
+        "quantity": 1,
+        "totalAmount": 1290.45,
+        "date": "2020-09-08"
+    },
+    {
+        "userId": 2,
+        "productId": 11,
+        "quantity": 4,
+        "totalAmount": 1560.8,
+        "date": "2020-09-12"
+    },
+    {
+        "userId": 22,
+        "productId": 37,
+        "quantity": 4,
+        "totalAmount": 3922.6,
+        "date": "2020-09-04"
+    },
+    {
+        "userId": 29,
+        "productId": 23,
+        "quantity": 2,
+        "totalAmount": 1322.9,
+        "date": "2020-09-09"
+    },
+    {
+        "userId": 55,
+        "productId": 12,
+        "quantity": 4,
+        "totalAmount": 1502.6,
+        "date": "2020-09-07"
+    },
+    {
+        "userId": 58,
+        "productId": 68,
+        "quantity": 5,
+        "totalAmount": 8353.25,
+        "date": "2020-09-03"
+    },
+    {
+        "userId": 32,
+        "productId": 6,
+        "quantity": 5,
+        "totalAmount": 1354.95,
+        "date": "2020-09-10"
+    },
+    {
+        "userId": 24,
+        "productId": 68,
+        "quantity": 2,
+        "totalAmount": 3341.3,
+        "date": "2020-09-10"
+    },
+    {
+        "userId": 49,
+        "productId": 74,
+        "quantity": 2,
+        "totalAmount": 3741.12,
+        "date": "2020-09-05"
+    },
+    {
+        "userId": 38,
+        "productId": 62,
+        "quantity": 1,
+        "totalAmount": 1580.4,
+        "date": "2020-09-02"
+    },
+    {
+        "userId": 55,
+        "productId": 61,
+        "quantity": 5,
+        "totalAmount": 7703.0,
+        "date": "2020-09-14"
+    },
+    {
+        "userId": 20,
+        "productId": 22,
+        "quantity": 1,
+        "totalAmount": 670.45,
+        "date": "2020-09-07"
+    },
+    {
+        "userId": 33,
+        "productId": 18,
+        "quantity": 1,
+        "totalAmount": 515.48,
+        "date": "2020-09-12"
+    },
+    {
+        "userId": 53,
+        "productId": 68,
+        "quantity": 5,
+        "totalAmount": 8353.25,
+        "date": "2020-09-05"
+    },
+    {
+        "userId": 43,
+        "productId": 60,
+        "quantity": 1,
+        "totalAmount": 900.0,
+        "date": "2020-09-08"
+    },
+    {
+        "userId": 22,
+        "productId": 69,
+        "quantity": 2,
+        "totalAmount": 3430.4,
+        "date": "2020-09-11"
+    },
+    {
+        "userId": 32,
+        "productId": 4,
+        "quantity": 1,
+        "totalAmount": 155.7,
+        "date": "2020-09-04"
+    },
+    {
+        "userId": 26,
+        "productId": 83,
+        "quantity": 2,
+        "totalAmount": 5284.6,
+        "date": "2020-09-04"
+    },
+    {
+        "userId": 33,
+        "productId": 9,
+        "quantity": 1,
+        "totalAmount": 310.05,
+        "date": "2020-09-14"
+    },
+    {
+        "userId": 28,
+        "productId": 24,
+        "quantity": 2,
+        "totalAmount": 1354.42,
+        "date": "2020-09-04"
+    },
+    {
+        "userId": 54,
+        "productId": 24,
+        "quantity": 4,
+        "totalAmount": 2708.84,
+        "date": "2020-09-01"
+    },
+    {
+        "userId": 38,
+        "productId": 42,
+        "quantity": 2,
+        "totalAmount": 2312.94,
+        "date": "2020-09-04"
+    },
+    {
+        "userId": 40,
+        "productId": 15,
+        "quantity": 2,
+        "totalAmount": 991.3,
+        "date": "2020-09-14"
+    },
+    {
+        "userId": 45,
+        "productId": 70,
+        "quantity": 3,
+        "totalAmount": 5311.2,
+        "date": "2020-09-07"
+    },
+    {
+        "userId": 30,
+        "productId": 9,
+        "quantity": 4,
+        "totalAmount": 1240.2,
+        "date": "2020-09-07"
+    },
+    {
+        "userId": 29,
+        "productId": 53,
+        "quantity": 3,
+        "totalAmount": 4321.2,
+        "date": "2020-09-12"
+    },
+    {
+        "userId": 58,
+        "productId": 29,
+        "quantity": 3,
+        "totalAmount": 2569.35,
+        "date": "2020-09-06"
+    },
+    {
+        "userId": 50,
+        "productId": 20,
+        "quantity": 4,
+        "totalAmount": 2318.24,
+        "date": "2020-09-04"
+    },
+    {
+        "userId": 51,
+        "productId": 1,
+        "quantity": 4,
+        "totalAmount": 400.0,
+        "date": "2020-09-10"
+    },
+    {
+        "userId": 21,
+        "productId": 15,
+        "quantity": 2,
+        "totalAmount": 991.3,
+        "date": "2020-09-13"
+    },
+    {
+        "userId": 57,
+        "productId": 71,
+        "quantity": 2,
+        "totalAmount": 3580.8,
+        "date": "2020-09-03"
+    },
+    {
+        "userId": 22,
+        "productId": 25,
+        "quantity": 1,
+        "totalAmount": 710.56,
+        "date": "2020-09-08"
+    }
+]

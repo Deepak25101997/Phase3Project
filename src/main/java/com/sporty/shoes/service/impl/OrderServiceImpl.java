@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
 	public Order createOrder(int uid, int pid, OrderRequestModel orderReq, String token)
 			throws MyException, MyAuthException {
 
-		Order tempOrder = new Order();
+		Order order = new Order();
 
 		try {
 
@@ -64,11 +64,13 @@ public class OrderServiceImpl implements OrderService {
 				if (product == null)
 					throw new MyException("No product found with id " + pid);
 				// saving them in the order entity
-				tempOrder.setUser(user);
-				tempOrder.setProduct(product);
-				tempOrder.setDate(orderReq.getDate());
-				tempOrder.setQuantity(orderReq.getQuantity());
-				tempOrder.setTotalAmount(orderReq.getTotalAmount());
+				order.setUser(user);
+				order.setProduct(product);
+				order.setDate(orderReq.getDate());
+				order.setQuantity(orderReq.getQuantity());
+				order.setTotalAmount(orderReq.getTotalAmount());
+				
+				repo.save(order);
 			}
 
 		} catch (MyAuthException e) {
@@ -76,7 +78,7 @@ public class OrderServiceImpl implements OrderService {
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
 		}
-		return tempOrder;
+		return order;
 	}
 
 	@Override

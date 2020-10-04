@@ -1,0 +1,422 @@
+[
+    {
+        "name": "alpha1",
+        "category": "moccasin",
+        "price": 100.0
+    },
+    {
+        "name": "alpha2",
+        "category": "moccasin",
+        "price": 130.0
+    },
+    {
+        "name": "alpha3",
+        "category": "moccasin",
+        "price": 140.5
+    },
+    {
+        "name": "alpha4",
+        "category": "moccasin",
+        "price": 155.70
+    },
+    {
+        "name": "beta1",
+        "category": "loafer",
+        "price": 200.0
+    },
+    {
+        "name": "beta2",
+        "category": "loafer",
+        "price": 270.99
+    },
+    {
+        "name": "beta3",
+        "category": "loafer",
+        "price": 240.45
+    },
+    {
+        "name": "beta4",
+        "category": "loafer",
+        "price": 290.70
+    },
+    {
+        "name": "gamma1",
+        "category": "monkstrap",
+        "price": 310.05
+    },
+    {
+        "name": "gamma2",
+        "category": "monkstrap",
+        "price": 330.0
+    },
+    {
+        "name": "gamma3",
+        "category": "monkstrap",
+        "price": 390.20
+    },
+    {
+        "name": "gamma4",
+        "category": "monkstrap",
+        "price": 375.65
+    },
+    {
+        "name": "delta1",
+        "category": "blucher",
+        "price": 400.55
+    },
+    {
+        "name": "delta2",
+        "category": "blucher",
+        "price": 478.65
+    },
+    {
+        "name": "delta3",
+        "category": "blucher",
+        "price": 495.65
+    },
+    {
+        "name": "delta4",
+        "category": "blucher",
+        "price": 463.50
+    },
+    {
+        "name": "epsilon1",
+        "category": "derby",
+        "price": 505.50
+    },
+    {
+        "name": "epsilon2",
+        "category": "derby",
+        "price": 515.48
+    },
+    {
+        "name": "epsilon3",
+        "category": "derby",
+        "price": 597.69
+    },
+    {
+        "name": "epsilon4",
+        "category": "derby",
+        "price": 579.56
+    },
+    {
+        "name": "zeta1",
+        "category": "saddleshoe",
+        "price": 666.48
+    },
+    {
+        "name": "zeta2",
+        "category": "saddleshoe",
+        "price": 670.45
+    },
+    {
+        "name": "zeta3",
+        "category": "saddleshoe",
+        "price": 661.45
+    },
+    {
+        "name": "zeta4",
+        "category": "saddleshoe",
+        "price": 677.21
+    },
+    {
+        "name": "eeta1",
+        "category": "sneaker",
+        "price": 710.56
+    },
+    {
+        "name": "eeta2",
+        "category": "sneaker",
+        "price": 745.56
+    },
+    {
+        "name": "eeta3",
+        "category": "sneaker",
+        "price": 788.14
+    },
+    {
+        "name": "eeta4",
+        "category": "sneaker",
+        "price": 791.67
+    },
+    {
+        "name": "theta1",
+        "category": "sporty",
+        "price": 856.45
+    },
+    {
+        "name": "theta2",
+        "category": "sporty",
+        "price": 844.78
+    },
+    {
+        "name": "theta3",
+        "category": "sporty",
+        "price": 810.69
+    },
+    {
+        "name": "theta4",
+        "category": "sporty",
+        "price": 880.84
+    },
+    {
+        "name": "iota1",
+        "category": "slippers",
+        "price": 50.56
+    },
+    {
+        "name": "iota2",
+        "category": "slippers",
+        "price": 70.89
+    },
+    {
+        "name": "iota3",
+        "category": "slippers",
+        "price": 100.23
+    },
+    {
+        "name": "iota4",
+        "category": "slippers",
+        "price": 56.89
+    },
+    {
+        "name": "kappa1",
+        "category": "canvas",
+        "price": 980.65
+    },
+    {
+        "name": "kappa2",
+        "category": "canvas",
+        "price": 977.71
+    },
+    {
+        "name": "kappa3",
+        "category": "canvas",
+        "price": 925.30
+    },
+    {
+        "name": "kappa4",
+        "category": "canvas",
+        "price": 964.73
+    },
+    {
+        "name": "lambda1",
+        "category": "trainers",
+        "price": 1001.56
+    },
+    {
+        "name": "lambda2",
+        "category": "trainers",
+        "price": 1156.47
+    },
+    {
+        "name": "lambda3",
+        "category": "trainers",
+        "price": 1149.54
+    },
+    {
+        "name": "lambda4",
+        "category": "trainers",
+        "price": 1197.60
+    },
+    {
+        "name": "mumotsu1",
+        "category": "boots",
+        "price": 1257.65
+    },
+    {
+        "name": "mumotsu2",
+        "category": "boots",
+        "price": 1297.56
+    },
+    {
+        "name": "mumotsu3",
+        "category": "boots",
+        "price": 1246.50
+    },
+    {
+        "name": "mumotsu4",
+        "category": "boots",
+        "price": 1290.45
+    },
+    {
+        "name": "nuro1",
+        "category": "flipflops",
+        "price": 1345.60
+    },
+    {
+        "name": "nuro2",
+        "category": "flipflops",
+        "price": 1360.40
+    },
+    {
+        "name": "nuro3",
+        "category": "flipflops",
+        "price": 1380.90
+    },
+    {
+        "name": "nuro4",
+        "category": "flipflops",
+        "price": 1370.64
+    },
+    {
+        "name": "xito1",
+        "category": "mules",
+        "price": 1440.40
+    },
+    {
+        "name": "xito2",
+        "category": "mules",
+        "price": 1470.80
+    },
+    {
+        "name": "xito3",
+        "category": "mules",
+        "price": 1490.56
+    },
+    {
+        "name": "xito4",
+        "category": "mules",
+        "price": 1410.50
+    },
+    {
+        "name": "omicron1",
+        "category": "gladiatorsandals",
+        "price": 754.56
+    },
+    {
+        "name": "omicron2",
+        "category": "gladiatorsandals",
+        "price": 690.50
+    },
+    {
+        "name": "omicron3",
+        "category": "gladiatorsandals",
+        "price": 880.64
+    },
+    {
+        "name": "omicron4",
+        "category": "gladiatorsandals",
+        "price": 900.0
+    },
+    {
+        "name": "pirazo1",
+        "category": "heels",
+        "price": 1540.60
+    },
+    {
+        "name": "pirazo2",
+        "category": "heels",
+        "price": 1580.40
+    },
+    {
+        "name": "pirazo3",
+        "category": "heels",
+        "price": 1590.30
+    },
+    {
+        "name": "pirazo4",
+        "category": "heels",
+        "price": 1540.36
+    },
+    {
+        "name": "rhore1",
+        "category": "brogues",
+        "price": 1610.50
+    },
+    {
+        "name": "rhore2",
+        "category": "brogues",
+        "price": 1670.40
+    },
+    {
+        "name": "rhore3",
+        "category": "brogues",
+        "price": 1660.10
+    },
+    {
+        "name": "rhore4",
+        "category": "brogues",
+        "price": 1670.65
+    },
+    {
+        "name": "sigma1",
+        "category": "ankleboots",
+        "price": 1715.20
+    },
+    {
+        "name": "sigma2",
+        "category": "ankleboots",
+        "price": 1770.40
+    },
+    {
+        "name": "sigma3",
+        "category": "ankleboots",
+        "price": 1790.40
+    },
+    {
+        "name": "sigma4",
+        "category": "ankleboots",
+        "price": 1730.46
+    },
+    {
+        "name": "tauto1",
+        "category": "calfboots",
+        "price": 1845.60
+    },
+    {
+        "name": "tauto2",
+        "category": "calfboots",
+        "price": 1870.56
+    },
+    {
+        "name": "tauto3",
+        "category": "calfboots",
+        "price": 1890.46
+    },
+    {
+        "name": "tauto4",
+        "category": "calfboots",
+        "price": 1850.23
+    },
+    {
+        "name": "upsilondo1",
+        "category": "chelseaboots",
+        "price": 1940.56
+    },
+    {
+        "name": "upsilondo2",
+        "category": "chelseaboots",
+        "price": 1960.45
+    },
+    {
+        "name": "upsilondo3",
+        "category": "chelseaboots",
+        "price": 1910.50
+    },
+    {
+        "name": "upsilondo4",
+        "category": "chelseaboots",
+        "price": 1990.46
+    },
+    {
+        "name": "omega1",
+        "category": "militaryboots",
+        "price": 2150.50
+    },
+    {
+        "name": "omega2",
+        "category": "militaryboots",
+        "price": 2235.50
+    },
+    {
+        "name": "omega3",
+        "category": "militaryboots",
+        "price": 2642.30
+    },
+    {
+        "name": "omega4",
+        "category": "militaryboots",
+        "price": 2741.60
+    }
+]
