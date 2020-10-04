@@ -56,16 +56,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		
 		
 		try {
-			if(token==null) throw new MyAuthException("Invalid Token, Access Denied!!");
+			if(token==null) throw new MyAuthException("Invalid Token, Access Denied !!");
 			
 			MyToken myToken = repo.findByTokenValue(token);
 			
-			if(myToken==null) throw new MyAuthException("Invalid Token, Access Denied!!");
+			if(myToken==null) throw new MyAuthException("Invalid Token, Access Denied !!");
 			
 			return true;
 			
 		} catch (Exception e) {
-			throw new MyAuthException("Invalid Token, Access Denied!!");
+			throw new MyAuthException(e.getMessage());
 		}
 		
 	}
