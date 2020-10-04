@@ -2,6 +2,7 @@ package com.sporty.shoes.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,10 +31,10 @@ public class UserServiceImpl implements UserService {
 		try {
 			if (token == null)
 				throw new MyAuthException("Token Missing !!");
-			if (user == null)
-				throw new MyException("User Data missing. Please pass some data to be inserted !!");
 			boolean isValidToken = AuthService.validateToken(token);
 			if (isValidToken) {
+				if (user.size()==0)
+					throw new MyException("User Data missing. Please pass some data to be inserted !!");
 				users = repo.saveAll(user);
 			}
 		} catch (MyAuthException e) {
@@ -54,10 +55,11 @@ public class UserServiceImpl implements UserService {
 		try {
 			if (token == null)
 				throw new MyAuthException("Token Missing !!");
-			if (user == null)
-				throw new MyException("User Data missing. Please pass some data to be inserted !!");
+			
 			boolean isValidToken = AuthService.validateToken(token);
 			if (isValidToken) {
+				if (user.getName()==null || user.getEmail()==null || user.getAge()<=0 || user.getContactNo() <= 0)
+					throw new MyException("User Data missing. Please pass appropriate data !!");
 				tempUser = repo.save(user);
 			}
 		} catch (MyAuthException e) {
@@ -70,7 +72,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserById(int id, String token) throws MyException, MyAuthException {
+	public User getUserById(int id, String token) throws MyException, MyAuthException{
 
 		User user = null;
 
@@ -83,13 +85,13 @@ public class UserServiceImpl implements UserService {
 				}
 
 				user = repo.findById(id).get();
-				if (user == null)
-					throw new MyException("No user found with id" + id);
 			}
 		} catch (MyAuthException e) {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		} catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No user found with id " + id);
 		}
 
 		return user;
@@ -98,6 +100,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteUserById(int id, String token) throws MyException, MyAuthException {
 
+		@SuppressWarnings("unused")
+		User user = null;
+		
 		try {
 			boolean isValidToken = AuthService.validateToken(token);
 			if (isValidToken) {
@@ -105,16 +110,15 @@ public class UserServiceImpl implements UserService {
 				if (id <= 0) {
 					throw new MyException("Id cannot be 0 or negative !");
 				}
-
-				User user = repo.findById(id).get();
-				if (user == null)
-					throw new MyException("No user exists with id " + id);
+				user = repo.findById(id).get();
 				repo.deleteById(id);
 			}
 		} catch (MyAuthException e) {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		} catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No user exists with id " + id);
 		}
 	}
 
@@ -134,6 +138,8 @@ public class UserServiceImpl implements UserService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No users found !!");
 		}
 
 		return users;
@@ -159,6 +165,8 @@ public class UserServiceImpl implements UserService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No user found for age" + age);
 		}
 
 		return users;
@@ -183,6 +191,8 @@ public class UserServiceImpl implements UserService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No users found with name " + name);
 		}
 
 		return users;

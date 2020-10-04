@@ -2,6 +2,7 @@ package com.sporty.shoes.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,12 +46,14 @@ public class OrderServiceImpl implements OrderService {
 				throw new MyException("Id cannot be 0 or negative !!");
 			if (pid <= 0)
 				throw new MyException("Id cannot be 0 or negative !!");
-			if (order == null)
-				throw new MyException("Order cannot be null. Pass some data !");
 
 			boolean isValidToken = AuthService.validateToken(token);
 
 			if (isValidToken) {
+
+				if (order.getDate() == null || order.getTotalAmount() <= 0d)
+					throw new MyException("Order cannot be null. Pass some data !");
+
 				// getting the user and product by their ids
 				User user = uService.getUserById(uid, token);
 				if (user == null)
@@ -87,13 +90,14 @@ public class OrderServiceImpl implements OrderService {
 				}
 
 				order = repo.findById(id).get();
-				if (order == null)
-					throw new MyException("No order found with id" + id);
+
 			}
 		} catch (MyAuthException e) {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		} catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No order found with id" + id);
 		}
 
 		return order;
@@ -110,15 +114,17 @@ public class OrderServiceImpl implements OrderService {
 					throw new MyException("Id cannot be 0 or negative !");
 				}
 
+				@SuppressWarnings("unused")
 				Order order = repo.findById(id).get();
-				if (order == null)
-					throw new MyException("No order exists with id " + id);
+				
 				repo.deleteById(id);
 			}
 		} catch (MyAuthException e) {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No order exists with id " + id);
 		}
 
 	}
@@ -139,7 +145,10 @@ public class OrderServiceImpl implements OrderService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No orders found !!!");
 		}
+
 		return orders;
 	}
 
@@ -163,6 +172,8 @@ public class OrderServiceImpl implements OrderService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No order found for date " + date);
 		}
 
 		return orders;
@@ -187,6 +198,8 @@ public class OrderServiceImpl implements OrderService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No order found for category " + category);
 		}
 
 		return orders;
@@ -215,6 +228,8 @@ public class OrderServiceImpl implements OrderService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No order found for given date and category");
 		}
 
 		return orders;

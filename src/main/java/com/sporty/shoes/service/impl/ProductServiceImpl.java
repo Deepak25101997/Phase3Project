@@ -2,6 +2,7 @@ package com.sporty.shoes.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,11 +32,11 @@ public class ProductServiceImpl implements ProductService {
 
 			if (token == null)
 				throw new MyAuthException("Token Missing !!");
-			if (product == null)
-				throw new MyException("Product Data missing. Please pass some data to be inserted !!");
-			
+
 			boolean isValidToken = AuthService.validateToken(token);
 			if (isValidToken) {
+				if (product.size() == 0)
+					throw new MyException("Product Data missing. Please pass some data to be inserted !!");
 				products = repo.saveAll(product);
 			}
 		} catch (MyAuthException e) {
@@ -49,16 +50,17 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product updateProduct(Product product, String token) throws MyAuthException, MyException {
-		
+
 		Product tempProduct = null;
-		
+
 		try {
 			if (token == null)
 				throw new MyAuthException("Token Missing !!");
-			if (product == null)
-				throw new MyException("Product Data missing. Please pass some data to be inserted !!");
+
 			boolean isValidToken = AuthService.validateToken(token);
 			if (isValidToken) {
+				if (product.getName() == null || product.getCategory() == null || product.getPrice() <= 0.0d)
+					throw new MyException("Product Data missing. Please pass appropriate data !!");
 				tempProduct = repo.save(product);
 			}
 		} catch (MyAuthException e) {
@@ -66,15 +68,15 @@ public class ProductServiceImpl implements ProductService {
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
 		}
-		
-		return  tempProduct;
+
+		return tempProduct;
 	}
 
 	@Override
 	public Product getProductById(int id, String token) throws MyAuthException, MyException {
-		
-		Product product=null;
-		
+
+		Product product = null;
+
 		try {
 			boolean isValidToken = AuthService.validateToken(token);
 			if (isValidToken) {
@@ -84,15 +86,15 @@ public class ProductServiceImpl implements ProductService {
 				}
 
 				product = repo.findById(id).get();
-				if (product == null)
-					throw new MyException("No product found with id" + id);
 			}
 		} catch (MyAuthException e) {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		} catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No product found with id" + id);
 		}
-		
+
 		return product;
 	}
 
@@ -106,23 +108,24 @@ public class ProductServiceImpl implements ProductService {
 					throw new MyException("Id cannot be 0 or negative !");
 				}
 
+				@SuppressWarnings("unused")
 				Product product = repo.findById(id).get();
-				if (product == null)
-					throw new MyException("No product exists with id " + id);
 				repo.deleteById(id);
 			}
 		} catch (MyAuthException e) {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No product exists with id " + id);
 		}
 	}
 
 	@Override
 	public List<Product> getAllProducts(String token) throws MyAuthException, MyException {
-		
+
 		List<Product> products = new ArrayList<>();
-		
+
 		try {
 			boolean isValidToken = AuthService.validateToken(token);
 			if (isValidToken) {
@@ -134,16 +137,18 @@ public class ProductServiceImpl implements ProductService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No products found !!");
 		}
-		
+
 		return products;
 	}
 
 	@Override
 	public List<Product> getProductsByCategory(String category, String token) throws MyAuthException, MyException {
-		
+
 		List<Product> products = new ArrayList<>();
-		
+
 		try {
 			boolean isValidToken = AuthService.validateToken(token);
 			if (isValidToken) {
@@ -159,9 +164,11 @@ public class ProductServiceImpl implements ProductService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No product found for category " + category);
 		}
-		
-		return products; 
+
+		return products;
 	}
 
 }

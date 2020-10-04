@@ -2,6 +2,7 @@ package com.sporty.shoes.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class AdminServiceImpl implements AdminService {
 		List<Admin> admins = new ArrayList<>();
 
 		try {
-			if (admin == null)
+			if (admin.size() == 0)
 				throw new MyException("Admin cannot be null ! Pass some admin data.");
 
 			admins = repo.saveAll(admin);
@@ -48,10 +49,12 @@ public class AdminServiceImpl implements AdminService {
 		try {
 			if (token == null)
 				throw new MyAuthException("Token Missing !!");
-			if (admin == null)
-				throw new MyException("Admin Data missing. Please pass some data to be inserted !!");
+
 			boolean isValidToken = AuthService.validateToken(token);
 			if (isValidToken) {
+				if (admin.getContactNo() <= 0 || admin.getEmail() == null || admin.getName() == null
+						|| admin.getPassword() == null || admin.getUsername() == null)
+					throw new MyException("Admin Data missing. Please pass some data to be inserted !!");
 				tempAdmin = repo.save(admin);
 			}
 		} catch (MyAuthException e) {
@@ -77,13 +80,14 @@ public class AdminServiceImpl implements AdminService {
 				}
 
 				admin = repo.findById(id).get();
-				if (admin == null)
-					throw new MyException("No admin found with id" + id);
+				
 			}
 		} catch (MyAuthException e) {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No admin found with id" + id);
 		}
 
 		return admin;
@@ -100,15 +104,16 @@ public class AdminServiceImpl implements AdminService {
 					throw new MyException("Id cannot be 0 or negative !");
 				}
 
+				@SuppressWarnings("unused")
 				Admin admin = repo.findById(id).get();
-				if (admin == null)
-					throw new MyException("No admin exists with id " + id);
 				repo.deleteById(id);
 			}
 		} catch (MyAuthException e) {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No admin exists with id " + id);
 		}
 
 	}
@@ -125,11 +130,10 @@ public class AdminServiceImpl implements AdminService {
 
 			admin = repo.findByUsername(name);
 
-			if (admin == null)
-				throw new MyException("No admin found with username " + name);
-
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No admin found with username " + name);
 		}
 
 		return admin;
@@ -143,20 +147,20 @@ public class AdminServiceImpl implements AdminService {
 
 			boolean isValidToken = AuthService.validateToken(token);
 			if (isValidToken) {
-				
-				if(id<=0)throw new MyException("Id cannot be 0 or negative !!");
-				
-				if(sentOldPassword==null) throw new MyException("Old password missing !!");
-				if(newPassword==null) throw new MyException("New password missing !!");
-				
+
+				if (id <= 0)
+					throw new MyException("Id cannot be 0 or negative !!");
+
+				if (sentOldPassword == null)
+					throw new MyException("Old password missing !!");
+				if (newPassword == null)
+					throw new MyException("New password missing !!");
+
 				String savedOldPass = repo.findPasswordById(id);
-				
-				if(savedOldPass==null) throw new MyException("No admin found with given id !!");
-				
+
 				if (savedOldPass.equals(sentOldPassword)) {
 					repo.updatePassword(newPassword, id);
-				}
-				else {
+				} else {
 					throw new MyException("Oldpassword entered is not matching with the saved one !!");
 				}
 			}
@@ -165,6 +169,8 @@ public class AdminServiceImpl implements AdminService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No admin found with given id !!");
 		}
 
 	}
@@ -192,7 +198,10 @@ public class AdminServiceImpl implements AdminService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No admins found !!!");
 		}
+
 
 		return admins;
 	}

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sporty.shoes.exceptionHandler.MyAuthException;
+import com.sporty.shoes.exceptionHandler.MyException;
 import com.sporty.shoes.service.AuthenticationService;
 
 @RestController
@@ -15,7 +16,7 @@ public class AuthController {
 	private AuthenticationService authService;
 	
 	@PostMapping("/login")
-	public String authenticate(@RequestHeader("username") String username, @RequestHeader("password") String password) throws MyAuthException {
+	public String authenticate(@RequestHeader("username") String username, @RequestHeader("password") String password) throws MyAuthException, MyException {
 	
 		return authService.createToken(username,password);
 	}
