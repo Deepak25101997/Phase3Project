@@ -246,4 +246,30 @@ public class OrderServiceImpl implements OrderService {
 		return orders;
 	}
 
+	@Override
+	public List<Order> getOrdersByUserId(int id, String token) throws MyException, MyAuthException {
+
+		List<Order> orders = new ArrayList<>();
+
+		try {
+			boolean isValidToken = AuthService.validateToken(token);
+			if (isValidToken) {
+
+				if (id <= 0)
+					throw new MyException("Id cannot be 0 or negative !");
+				orders = repo.findByUserId(id);
+				
+				if(orders.size()==0)throw new MyException("No order found for given Id !");
+				
+			}
+		} catch (MyAuthException e) {
+			throw new MyAuthException(e.getMessage());
+		} catch (MyException e) {
+			throw new MyException(e.getMessage());
+		} catch (NoSuchElementException e) {
+			throw new NoSuchElementException("No order found for given user id !");
+		}
+		return orders;
+	}
+
 }

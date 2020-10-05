@@ -23,4 +23,11 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 	@Query(value = "Select * from order_table where date = :dd and product_id in :ids", nativeQuery = true)
 	@Transactional
 	public List<Order> findByDateAndCategory(@Param("dd") String date, @Param("ids") int[] ids);
+	
+	
+	@Query(value = "Select * from order_table where user_id = :uid", nativeQuery = true)
+	@Transactional
+	public List<Order> findByUserId(@Param("uid") int uid);
+	
+	
 }

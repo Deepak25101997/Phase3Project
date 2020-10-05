@@ -25,4 +25,6 @@ public interface OrderService {
 	public List<Order> getAllOrdersByDateAndCategory(String date, String category, String token)
 			throws MyException, MyAuthException;
 
+	public List<Order> getOrdersByUserId(int id, String token) throws MyAuthException, MyException;
+
 }

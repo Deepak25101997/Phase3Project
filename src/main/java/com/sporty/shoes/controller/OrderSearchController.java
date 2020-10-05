@@ -42,4 +42,9 @@ public class OrderSearchController {
 		return service.getAllOrdersByDateAndCategory(date, category, token);
 	}
 
+	@GetMapping("/orders/user/{id}")
+	public List<Order> getOrderByUserId(@PathVariable int id, @RequestHeader("token") String token) throws MyAuthException, MyException {
+		return service.getOrdersByUserId(id, token);
+	}
+
 }
