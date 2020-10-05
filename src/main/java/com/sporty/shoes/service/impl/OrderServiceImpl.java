@@ -69,7 +69,7 @@ public class OrderServiceImpl implements OrderService {
 				order.setDate(orderReq.getDate());
 				order.setQuantity(orderReq.getQuantity());
 				order.setTotalAmount(orderReq.getTotalAmount());
-				
+
 				repo.save(order);
 			}
 
@@ -195,7 +195,10 @@ public class OrderServiceImpl implements OrderService {
 				if (category == null) {
 					throw new MyException("Category cannot be null !");
 				}
-				orders = repo.findByCategory(category);
+
+				int[] arr = pService.idsOfCategory(category);
+
+				orders = repo.findByCategory(arr);
 				if (orders.size() <= 0)
 					throw new MyException("No order found for category " + category);
 			}
@@ -225,7 +228,10 @@ public class OrderServiceImpl implements OrderService {
 				if (date == null) {
 					throw new MyException("Date cannot be null !");
 				}
-				orders = repo.findByDateAndCategory(date, category);
+
+				int[] arr = pService.idsOfCategory(category);
+
+				orders = repo.findByDateAndCategory(date, arr);
 				if (orders.size() <= 0)
 					throw new MyException("No order found for given date and category");
 			}

@@ -13,6 +13,7 @@ import com.sporty.shoes.model.Admin;
 public interface AdminRepository  extends JpaRepository<Admin, Integer>{
 	
 	@Query(value="Select password from admin_table where id=?", nativeQuery = true )
+	@Transactional
 	public String findPasswordById(int id);
 	
 	

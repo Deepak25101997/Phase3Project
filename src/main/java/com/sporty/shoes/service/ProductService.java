@@ -14,9 +14,12 @@ public interface ProductService {
 
 	public Product getProductById(int id, String token) throws MyAuthException, MyException;
 
-	public void deleteProductById(int id, String token) throws MyAuthException, MyException;
+	public String deleteProductById(int id, String token) throws MyAuthException, MyException;
 
 	public List<Product> getAllProducts(String token) throws MyAuthException, MyException;
 
 	public List<Product> getProductsByCategory(String category, String token) throws MyAuthException, MyException;
+	
+	public int[] idsOfCategory(String category);
 }
+

@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private AuthenticationService AuthService;
-	
+
 	@Autowired
 	private UserService userService;
 
@@ -36,8 +36,14 @@ public class UserServiceImpl implements UserService {
 				throw new MyAuthException("Token Missing !!");
 			boolean isValidToken = AuthService.validateToken(token);
 			if (isValidToken) {
-				if (user.size()==0)
+				if (user.size() == 0)
 					throw new MyException("User Data missing. Please pass some data to be inserted !!");
+
+				for (User us : user) {
+					if (us.getContactNo() <= 0 || us.getEmail() == null || us.getName() == null || us.getAge() <= 0)
+						throw new MyException("Invalid data passed !!");
+				}
+
 				users = repo.saveAll(user);
 			}
 		} catch (MyAuthException e) {
@@ -58,22 +64,22 @@ public class UserServiceImpl implements UserService {
 		try {
 			if (token == null)
 				throw new MyAuthException("Token Missing !!");
-			
+
 			boolean isValidToken = AuthService.validateToken(token);
 			if (isValidToken) {
-				if (user.getName()==null || user.getEmail()==null || user.getAge()<=0 || user.getContactNo() <= 0)
+				if (user.getName() == null || user.getEmail() == null || user.getAge() <= 0 || user.getContactNo() <= 0)
 					throw new MyException("User Data missing. Please pass appropriate data !!");
-				
+
 				@SuppressWarnings("unused")
 				User tempUser2 = userService.getUserById(user.getId(), token);
-				
+
 				tempUser = repo.save(user);
 			}
 		} catch (MyAuthException e) {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException("No user found with id " + user.getId() + "Updation Failed !!");
 		}
 
@@ -81,7 +87,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserById(int id, String token) throws MyException, MyAuthException{
+	public User getUserById(int id, String token) throws MyException, MyAuthException {
 
 		User user = null;
 
@@ -107,11 +113,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void deleteUserById(int id, String token) throws MyException, MyAuthException {
+	public String deleteUserById(int id, String token) throws MyException, MyAuthException {
 
 		@SuppressWarnings("unused")
 		User user = null;
-		
+
 		try {
 			boolean isValidToken = AuthService.validateToken(token);
 			if (isValidToken) {
@@ -129,6 +135,8 @@ public class UserServiceImpl implements UserService {
 		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException("No user exists with id " + id);
 		}
+
+		return "User Deleted Successfully !";
 	}
 
 	@Override
@@ -147,7 +155,7 @@ public class UserServiceImpl implements UserService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException("No users found !!");
 		}
 
@@ -174,7 +182,7 @@ public class UserServiceImpl implements UserService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException("No user found for age" + age);
 		}
 
@@ -200,7 +208,7 @@ public class UserServiceImpl implements UserService {
 			throw new MyAuthException(e.getMessage());
 		} catch (MyException e) {
 			throw new MyException(e.getMessage());
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException("No users found with name " + name);
 		}
 

@@ -16,7 +16,7 @@ import com.sporty.shoes.service.AdminService;
 public class AdminSearchController {
 
 	@Autowired
-	AdminService service;
+	private AdminService service;
 	
 	@GetMapping("/admins")
 	public List<Admin> getAllAdmins(@RequestHeader("token") String token) throws MyException, MyAuthException{

@@ -42,9 +42,9 @@ public class UserCRUDController {
 	}
 
 	@DeleteMapping("/user/{id}")
-	public void deleteUserById(@PathVariable int id, @RequestHeader("token") String token)
+	public String deleteUserById(@PathVariable int id, @RequestHeader("token") String token)
 			throws MyException, MyAuthException {
-		service.deleteUserById(id, token);
+		return service.deleteUserById(id, token);
 	}
 
 }

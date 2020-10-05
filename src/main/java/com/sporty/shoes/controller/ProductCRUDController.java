@@ -36,9 +36,9 @@ public class ProductCRUDController {
 	}
 
 	@DeleteMapping("/product/{id}")
-	public void deleteProductBydId(@PathVariable int id, @RequestHeader("token") String token)
+	public String deleteProductBydId(@PathVariable int id, @RequestHeader("token") String token)
 			throws MyAuthException, MyException {
-		service.deleteProductById(id, token);
+		return service.deleteProductById(id, token);
 	}
 
 	@GetMapping("/product/{id}")

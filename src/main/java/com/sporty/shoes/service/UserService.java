@@ -14,7 +14,7 @@ public interface UserService {
 
 	public User getUserById(int id, String token) throws MyException, MyAuthException;
 
-	public void deleteUserById(int id, String token) throws MyException, MyAuthException;
+	public String deleteUserById(int id, String token) throws MyException, MyAuthException;
 
 	public List<User> getAllUsers(String token) throws MyAuthException, MyException;
 

@@ -22,7 +22,7 @@ import com.sporty.shoes.service.AdminService;
 public class AdminCRUDController {
 
 	@Autowired
-	AdminService service;
+	private AdminService service;
 
 	@PostMapping("/admin")
 	public List<Admin> createAdmin(@RequestBody List<Admin> admin) throws MyException {

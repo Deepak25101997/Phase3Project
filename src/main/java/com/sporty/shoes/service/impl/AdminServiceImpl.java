@@ -24,7 +24,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	private AuthenticationService AuthService;
-	
+
 	@Autowired
 	private MyTokenRepository myTokenRepo;
 
@@ -32,6 +32,12 @@ public class AdminServiceImpl implements AdminService {
 	public List<Admin> createAdmin(List<Admin> admin) throws MyException {
 
 		List<Admin> admins = new ArrayList<>();
+
+		for (Admin ad : admin) {
+			if (ad.getName() == null || ad.getEmail() == null || ad.getContactNo() <= 0 || ad.getPassword() == null
+					|| ad.getUsername() == null)
+				throw new MyException("Invalid data passed !!");
+		}
 
 		try {
 			if (admin.size() == 0)

@@ -26,7 +26,7 @@ public class Order {
 
 	@ManyToOne
 	private User user;
-	
+
 	@ManyToOne
 	private Product product;
 
