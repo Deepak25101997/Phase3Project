@@ -1,13 +1,12 @@
-def buildNumber = env.BUILD_NUMBER as int
-if (buildNumber > 1) milestone(buildNumber - 1)
-milestone(buildNumber)
-
 pipeline {
-   agent any
-
+   agent any	
    stages {
       stage('Build') {
         steps {
+		def buildNumber = env.BUILD_NUMBER as int
+		if (buildNumber > 1) milestone(buildNumber - 1)
+		milestone(buildNumber)
+		
           echo 'Building...'
           echo "Running ${env.BUILD_ID} ${env.BUILD_DISPLAY_NAME} on ${env.NODE_NAME} and JOB ${env.JOB_NAME}"
 	  sh "mvn clean package"
