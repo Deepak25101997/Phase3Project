@@ -29,7 +29,7 @@ public class AuthController {
 	
 	@GetMapping("/welcome")
 	public String welcomeMessage() {
-		return "Hello";
+		return "Hello Deepak";
 	}
 	
 }
