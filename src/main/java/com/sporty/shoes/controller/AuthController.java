@@ -1,6 +1,7 @@
 package com.sporty.shoes.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,11 @@ public class AuthController {
 	@PostMapping("/logout")
 	public String deAuthenticate(@RequestHeader("token") String token) throws MyAuthException {
 		return authService.logout(token);
+	}
+	
+	@GetMapping("/welcome")
+	public String welcomeMessage() {
+		return "Hello";
 	}
 	
 }
